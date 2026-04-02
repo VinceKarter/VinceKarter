@@ -1,16 +1,53 @@
-## Hi there 👋
+# Food Tracker Backend API
 
-<!--
-**VinceKarter/VinceKarter** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Production-ready starter backend API for tracking foods, logging meals, and monitoring daily macro goals.
 
-Here are some ideas to get you started:
+## Features
+- JWT authentication (`/auth/register`, `/auth/login`)
+- User profile + nutrition goal management
+- Food catalog CRUD-lite (create/list/get)
+- Food entry logging by day + meal type
+- Daily nutrition summary with calorie/protein/carbs/fat totals vs goals
+- SQLite persistence with SQLAlchemy ORM
+- OpenAPI docs via FastAPI (`/docs`)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Tech Stack
+- FastAPI
+- SQLAlchemy
+- Pydantic
+- JWT (python-jose)
+- Passlib (bcrypt)
+
+## Run locally
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+API runs at `http://127.0.0.1:8000`.
+
+## Core Endpoints
+### Auth
+- `POST /auth/register`
+- `POST /auth/login`
+
+### User
+- `GET /users/me`
+- `PUT /users/me/goals`
+
+### Foods
+- `POST /foods`
+- `GET /foods`
+- `GET /foods/{food_id}`
+
+### Entries
+- `POST /entries`
+- `GET /entries?consumed_date=YYYY-MM-DD`
+- `GET /entries/daily-summary?consumed_date=YYYY-MM-DD`
+
+## Testing
+```bash
+pytest
+```
